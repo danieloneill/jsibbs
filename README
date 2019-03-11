@@ -1,0 +1,39 @@
+So you want to use 2020 technology to pretend you're in 1988? Easy. Let's dewwet.
+
+If you don't already have JSI, you need to grab it.
+
+http://jsish.org
+
+Linux:
+  Edit the Makefile to point to your JSI source root, then type 'make'.
+
+  Once built, use the resulting executable to launch the bbs software:
+
+    $ ./snoopybbs js/bbs.js
+
+  Door support is via DOSEMU which should be installed. You can find how and where this gets launched in the source code. (Don't forget to load FOSSIL.EXE in your door's BAT file!)
+
+Others:
+  Edit js/bbs.js and comment out all the Doors code. It won't work without compiling the custom interpreter, and that only works under Linux right now. (I know, I know, but it does pseudoterminal stuff and traps signals and such. I could write BSD equivalents but it wouldn't work. I can't even install BSD much less code for it...)
+
+  $ jsish js/bbs.js
+
+Notes:
+  The BBS listens on port 23 by default. This means you'd need to run it as root, or modify your policies to allow it to bind to port 23.
+
+  You can edit js/bbs.js and change the port. The line is almost the last line in the source.
+
+  To modify the menus and flow, edit js/bbs.js
+
+  The menus are stored in ansi/ and can be edited with a regular ANSI editor.
+
+  Sprinkled throughout bbs.js you will see "net.send" lines demonstrating how to just ... send stuff to the client.
+
+  Config files would be neat, but considering the entire BBS is 13KB @ 551 lines (not including cprint or the PTY fanciness) and is written in JS, it seemed like overkill.  But hey, maybe one day I'll implement some JSON config thing?
+
+See LICENSE for licence info.
+
+Written by Daniel O'Neill
+
+http://github.com/danieloneill/jsibbs
+
